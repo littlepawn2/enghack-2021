@@ -9,6 +9,7 @@ class Movable(object):
         self.vel = PVector(0, 0)
         self.acc = PVector(0, 0)
         self.hitbox = None #movable will always have a hitbox
+
         
     def move(self, max_speed):
         if self.vel.mag() > max_speed:
@@ -23,10 +24,13 @@ class Player(Movable):
     
     CONTROL_DAMPER = 100
     
-    def __init__(self, posx, posy, rad):
+    def __init__(self, posx, posy, rad, pic):
         super(Player, self).__init__(posx, posy)
         self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
+        self.pic = pic
+        self.x = posx
+        self.y = posy
         
     def getHitbox(self):
         return self.hitbox
@@ -63,6 +67,8 @@ class Player(Movable):
     def drawObject(self):
         fill(255, 0, 0)
         circle(400, 300, self.rad)
+        copy(self.pic, 0, 0, 500, 500, self.x - 15, self.y -15, self.rad +10, self.rad +10)
+        
         
 
 

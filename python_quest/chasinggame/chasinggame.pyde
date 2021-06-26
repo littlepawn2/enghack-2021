@@ -3,12 +3,13 @@ from entities import Enemy
 from obstacles import Obstacle
 
 
-player = Player(400, 300, 25)
-enemies = []
-obstacles = []
-
 def setup():
     global player, enemies, obstacles
+    
+    pic =  loadImage ("kirbypuffy.png")
+    player = Player(400, 300, 25, pic)
+    enemies = []
+    obstacles = []
     
     size(800, 600)
     stroke(255)
