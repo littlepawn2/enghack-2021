@@ -5,15 +5,39 @@ class Circle:
     ##a circular hitbox
     
     def __init__(self, posx, posy, rad):
-        pass
+        self.posx = posx
+        self.posy = posy
+        self.rad = rad
         
     def detect(self, sh):
         #returns true if colliding with shape, false if not
-        pass
+        
+        
+        #detects circle circle collision
+        if self.rad + Enemy.rad > ((self.posx - Enemy.posx)**2 + (self.posy - Enemy.posy)**2)**0.5:
+            self.sh = True
+        elif self.rad/2 + Enemy.rad/2 < ((self.posx - Enemy.posx)**2 + (self.posy - Enemy.posy)**2)**0.5:
+            self.sh = False
+        
+        
+        
+        #detects rectangle circle collision    
+        def clamp(num, min_value, max_value):
+            return max(min(num, max_value), min_value)
+        
+        pointrect_x = clamp(self.posx, Rectangle.posx, Rectangle.posx + Rectangle.lenx)
+        pointrect_y = clamp(self.posy, Rectangle.posy, Rectangle.posy + Rectangle.leny)
+        
+        if ((pointrect_x - self.posx)**2 + (pointrect_y - self.posy)**2)**0.5 < self.rad/2:
+            self.sh = True
+        elif ((pointrect_x - self.posx)**2 + (pointrect_y - self.posy)**2)**0.5 < self.rad/2:
+            self.sh = False
+        
         
     def update(self, x, y):
         #updates position
-        pass
+        self.posx = x
+        self.posy = y
         
         
         
