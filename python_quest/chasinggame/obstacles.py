@@ -2,29 +2,22 @@ from collision_detectors import Rectangle
 
 ##file for obstacles
 
-class Obstacle():
+class Obstacle(object):
     
-    def __init__(self, posx, posy, lenx, leny):
+    TYPES = ["SOFT", "HARD"]
+    #soft - slows player
+    #hard - stops player
+    
+    def __init__(self, posx, posy, lenx, leny, type):
         self.hitbox = Rectangle(posx, posy, lenx, leny)
-        
-
-class SoftObstacle:
-    #slows down player while within bounds
-    
-    def __init__(self):
-        pass
+        if not type in Obstacle.TYPES:
+            raise ValueError("Unsupported obstacle type")
+        self.type = type
         
     def getHitbox(self):
         return self.hitbox
-        
-        
-        
-        
-class HardObstacle:
-    #stops player when colliding
     
-    def __init__(self):
-        pass
+    def drawObject(self):
+        fill(255)
+        rect(posx, posy, lenx, leny)
         
-    def getHitbox(self):
-        return self.hitbox
