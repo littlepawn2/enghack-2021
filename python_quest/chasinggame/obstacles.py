@@ -10,6 +10,10 @@ class Obstacle(object):
     
     def __init__(self, posx, posy, lenx, leny, type):
         self.hitbox = Rectangle(posx, posy, lenx, leny)
+        self.posx = posx
+        self.posy = posy
+        self.lenx = lenx
+        self.leny = leny
         if not type in Obstacle.TYPES:
             raise ValueError("Unsupported obstacle type")
         self.type = type
@@ -21,6 +25,9 @@ class Obstacle(object):
         return self.type
     
     def drawObject(self):
-        fill(255)
-        rect(posx, posy, lenx, leny)
+        if self.type == "HARD":
+            fill(255)
+        elif self.type == "SOFT":
+            fill(100)
+        rect(self.posx, self.posy, self.lenx, self.leny)
         

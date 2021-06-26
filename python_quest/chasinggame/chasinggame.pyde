@@ -17,6 +17,10 @@ def setup():
     enemies.append(Enemy(100, 100, 25))
     
     ##add obstacles
+    for i in range(10):
+        obstacles.append(Obstacle(random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "SOFT"))
+    for i in range(5):
+        obstacles.append(Obstacle(random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "HARD"))
     
 def draw():
     global player, enemies, obstacles
@@ -41,7 +45,6 @@ def draw():
         enemy.drawObject()
     
     for obstacle in obstacles:
-        obstacle.move()
         obstacle.drawObject()
     
     popMatrix()
