@@ -35,10 +35,6 @@ def draw():
     background(0)
     image (sky,0,0)
     
-    player.move()
-    player.boundaryCollision()
-    player.drawObject()
-    
     pushMatrix()
     translate(-player.pos.x+400, -player.pos.y+300)
     
@@ -48,14 +44,23 @@ def draw():
     rect(0, 0, 2000, 2000)
     strokeWeight(0)
     
+    for obstacle in obstacles:
+        obstacle.drawObject()
     
     for enemy in enemies:
         enemy.move(player)
         enemy.boundaryCollision()
+        for obstacle in obstacles:
+            enemy.collide(obstacle)
         enemy.drawObject()
-        
-    
-    for obstacle in obstacles:
-        obstacle.drawObject()
     
     popMatrix()
+    
+    
+    player.move()
+    player.boundaryCollision()
+    for enemy in enemies:
+        player.collide(enemy)
+    for obstacle in obstacles:
+        player.collide(obstacle)
+    player.drawObject()
