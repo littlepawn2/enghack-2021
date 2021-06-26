@@ -4,7 +4,7 @@
 class Circle:
     ##a circular hitbox
     
-    def __init__(self):
+    def __init__(self, posx, posy, rad):
         pass
         
     def detect(sh):
@@ -24,6 +24,6 @@ class Rectangle:
     ##a rectanglar hitbox
     ##should always be stationary, update not required
     
-    def __init__(self):
+    def __init__(self, posx, posy, lenx, leny):
         pass
         

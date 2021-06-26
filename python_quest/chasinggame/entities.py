@@ -10,6 +10,7 @@ class Movable:
         self.pos = PVector(posx, posy)
         self.vel = PVector(0, 0)
         self.acc = PVector(0, 0)
+        self.hitbox = None #movable will always have a hitbox
         
     def move():
         if self.vel.mag() > MAX_SPEED:
@@ -17,11 +18,14 @@ class Movable:
         
         self.pos.add(vel)
         self.vel.add(acc)
+        
+        self.hitbox.update(pos.x, pos.y)
 
 class Player(Movable):
     
     def __init__(self, posx, posy, rad):
         super().__init__(posx, posy)
+        self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
         
     def getHitbox(self):
@@ -42,6 +46,10 @@ class Player(Movable):
                 pass
             elif isinstance(sh, HardObstacle):
                 pass
+                
+    def drawObject():
+        fill(255, 0, 0)
+        circle(self.pos.x, self.pos.y, self.rad)
         
 
 
@@ -66,3 +74,7 @@ class Enemy(Movable):
                 pass
             elif isinstance(sh, HardObstacle):
                 pass
+                
+    def drawObject():
+        fill(0, 0, 255)
+        circle(self.pos.x, self.pos.y, self.rad)
