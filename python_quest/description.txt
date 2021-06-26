@@ -1,0 +1,17 @@
+Sky Chase Game
+By: Kimberly Ko, Ryder Wang, and William Wen
+
+This is our game, Sky Chase! It was coded using python in Processing.
+We implemented lots of object-oriented programming to create all our characters and features.
+A "Movable" class was used to track the hitboxes, position, velocity, and acceleration of all movable objects.
+It became the parent class for the player and the enemy classes.
+There are also shape classes (circle and rectangle) that detect when objects interact or collide and update positions
+
+Features:
+- Nintendo themed characters and obstacles
+- Boundaries to the area that the character must stay in
+- Moveable player character that can be controlled with a mouse
+- Homing enemies that chase the player character --> will result in "game over" when they touch
+- There are different obstacles to avoid:
+	We made "hard obstacles" like sticky walls which stop the character, and "soft obstacles" like clouds that slow the character down.
+	The sizes and positions of all obstacles are randomly generated for a unique experience each game
