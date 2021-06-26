@@ -49,6 +49,17 @@ class Player(Movable):
                     pass
                 elif sh.getType == "HARD":
                     pass
+                    
+    def boundaryCollision(self):
+        if self.pos.x < 0:
+            self.pos.x = 0
+        elif self.pos.x > 2000:
+            self.pos.x = 2000
+            
+        if self.pos.y < 0:
+            self.pos.y = 0
+        elif self.pos.y > 2000:
+            self.pos.y = 2000
                 
     def drawObject(self):
         fill(255, 0, 0)
@@ -79,6 +90,17 @@ class Enemy(Movable):
                     pass
                 elif sh.getType == "HARD":
                     pass
+                    
+    def boundaryCollision(self):
+        if self.pos.x < 0:
+            self.pos.x = 0
+        elif self.pos.x > 2000:
+            self.pos.x = 2000
+            
+        if self.pos.y < 0:
+            self.pos.y = 0
+        elif self.pos.y > 2000:
+            self.pos.y = 2000
                 
     def drawObject(self):
         fill(0, 0, 255)

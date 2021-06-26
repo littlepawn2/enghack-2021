@@ -11,6 +11,7 @@ def setup():
     global player, enemies, obstacles
     
     size(800, 600)
+    stroke(255)
     
     ##add enemies
     enemies.append(Enemy(100, 100, 25))
@@ -20,15 +21,21 @@ def setup():
 def draw():
     global player, enemies, obstacles
     
-    println((mouseX, mouseY))
-    
     background(0)
     
     player.move()
+    player.boundaryCollision()
     player.drawObject()
     
+    print(player.pos)
+    
     pushMatrix()
-    translate(-player.pos.x, -player.pos.y)
+    translate(-player.pos.x+400, -player.pos.y+300)
+    
+    #boundary
+    noFill()
+    rect(0, 0, 2000, 2000)
+    
     for enemy in enemies:
         enemy.move()
         enemy.drawObject()
