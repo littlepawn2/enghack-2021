@@ -3,12 +3,14 @@ from entities import Enemy
 from obstacles import Obstacle
 
 
-player = Player(400, 300, 25)
-enemies = []
-obstacles = []
-
 def setup():
-    global player, enemies, obstacles
+    global player, enemies, obstacles, sky
+    
+    pic =  loadImage ("kirbypuffy.png")
+    sky = loadImage ("sky.jpeg")
+    player = Player(400, 300, 25, pic)
+    enemies = []
+    obstacles = []
     
     size(800, 600)
     stroke(255)
@@ -25,30 +27,31 @@ def setup():
         obstacles.append(Obstacle(random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "HARD"))
     
 def draw():
-    global player, enemies, obstacles
+    global player, enemies, obstacles, sky
     
     background(0)
-    
-    player.move()
-    player.boundaryCollision()
-    player.drawObject()
-    
-    print(player.pos)
+    image (sky,0,0)
     
     pushMatrix()
     translate(-player.pos.x+400, -player.pos.y+300)
     
     #boundary
     noFill()
+    strokeWeight(1)
     rect(0, 0, 2000, 2000)
+    strokeWeight(0)
+    
+    for obstacle in obstacles:
+        obstacle.drawObject()
     
     for enemy in enemies:
         enemy.move(player)
         enemy.boundaryCollision()
         enemy.drawObject()
-        
-    
-    for obstacle in obstacles:
-        obstacle.drawObject()
     
     popMatrix()
+    
+    
+    player.move()
+    player.boundaryCollision()
+    player.drawObject()
