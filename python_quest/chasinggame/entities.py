@@ -69,11 +69,11 @@ class Player(Movable):
 
 class Enemy(Movable):
     
-    def __init__(self, posx, posy, rad):
+    def __init__(self, posx, posy, rad, lookahead=0):
         super(Enemy, self).__init__(posx, posy)
         self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
-        self.lookAheadFactor = random(0, 200)
+        self.lookAheadFactor = lookahead
         
     def getHitbox(self):
         return self.hitbox

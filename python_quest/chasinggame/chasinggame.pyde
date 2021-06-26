@@ -14,9 +14,9 @@ def setup():
     stroke(255)
     
     ##add enemies
-    enemies.append(Enemy(100, 100, 25))
-    enemies.append(Enemy(500, 100, 25))
-    enemies.append(Enemy(100, 800, 25))
+    enemies.append(Enemy(100, 100, 25, 0))
+    enemies.append(Enemy(500, 100, 25, 100))
+    enemies.append(Enemy(100, 800, 25, 250))
     
     ##add obstacles
     for i in range(10):
