@@ -8,6 +8,9 @@ def setup():
     
     pic =  loadImage ("kirbypuffy.png")
     sky = loadImage ("sky.jpeg")
+    en_pic = loadImage ("enemy3.png")
+    cloud = loadImage ("cloud.png")
+    brick = loadImage ("brick.png")
     player = Player(400, 300, 25, pic)
     enemies = []
     obstacles = []
@@ -16,15 +19,15 @@ def setup():
     stroke(255)
     
     ##add enemies
-    enemies.append(Enemy(100, 100, 25, 0))
-    enemies.append(Enemy(500, 100, 25, 100))
-    enemies.append(Enemy(100, 800, 25, 250))
+    enemies.append(Enemy(en_pic,100, 100, 25, 0))
+    enemies.append(Enemy(en_pic, 500, 100, 25, 100))
+    enemies.append(Enemy(en_pic, 100, 800, 25, 250))
     
     ##add obstacles
     for i in range(10):
-        obstacles.append(Obstacle(random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "SOFT"))
+        obstacles.append(Obstacle(cloud, random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "SOFT"))
     for i in range(5):
-        obstacles.append(Obstacle(random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "HARD"))
+        obstacles.append(Obstacle(brick ,random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "HARD"))
     
 def draw():
     global player, enemies, obstacles, sky

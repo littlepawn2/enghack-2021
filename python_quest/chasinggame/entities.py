@@ -77,11 +77,13 @@ class Player(Movable):
 
 class Enemy(Movable):
     
-    def __init__(self, posx, posy, rad, lookahead=0):
+    def __init__(self, en_pic, posx, posy, rad, lookahead=0):
         super(Enemy, self).__init__(posx, posy)
         self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
         self.lookAheadFactor = lookahead
+        self.pic = en_pic
+    
         
     def getHitbox(self):
         return self.hitbox
@@ -121,3 +123,7 @@ class Enemy(Movable):
     def drawObject(self):
         fill(0, 0, 255)
         circle(self.pos.x, self.pos.y, self.rad)
+        self.x = int(self.pos.x)
+        self.y = int(self.pos.y)
+        copy(self.pic, 0, 0, 1500,1500, self.x-28, self.y-24, self.rad +83, self.rad +83)
+        
