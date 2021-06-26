@@ -4,9 +4,10 @@ from obstacles import Obstacle
 
 
 def setup():
-    global player, enemies, obstacles
+    global player, enemies, obstacles, sky
     
     pic =  loadImage ("kirbypuffy.png")
+    sky = loadImage ("sky.jpeg")
     player = Player(400, 300, 25, pic)
     enemies = []
     obstacles = []
@@ -26,9 +27,10 @@ def setup():
         obstacles.append(Obstacle(random(100, 1700), random(100, 1700), random(50, 200), random(50, 200), "HARD"))
     
 def draw():
-    global player, enemies, obstacles
+    global player, enemies, obstacles, sky
     
     background(0)
+    image (sky,0,0)
     
     player.move()
     player.boundaryCollision()
