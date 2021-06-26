@@ -6,16 +6,12 @@ class Movable(object):
     
     MAX_SPEED = 10
     
-    def __init__(self, posx, posy, pic):
+    def __init__(self, posx, posy):
         self.pos = PVector(posx, posy)
         self.vel = PVector(0, 0)
         self.acc = PVector(0, 0)
         self.hitbox = None #movable will always have a hitbox
-        self.pic = pic
-        self.x = posx
-        self.y = posy
-        
-        
+
         
     def move(self):
         if self.vel.mag() > Movable.MAX_SPEED:
@@ -30,11 +26,13 @@ class Player(Movable):
     
     CONTROL_DAMPER = 100
     
-    def __init__(self, posx, posy, rad):
+    def __init__(self, posx, posy, rad, pic):
         super(Player, self).__init__(posx, posy)
         self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
-        self.pic =  loadImage ("kirbypuffy.png")
+        self.pic = pic
+        self.x = posx
+        self.y = posy
         
     def getHitbox(self):
         return self.hitbox
