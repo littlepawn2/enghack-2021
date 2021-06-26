@@ -47,13 +47,13 @@ class Player(Movable):
         if self.hitbox.detect(sh.hitbox):
             if isinstance(sh, Enemy):
                 text("you lose", 100, 100)
-                noLoop()
+                #noLoop()
             elif isinstance(sh, Obstacle):
-                if sh.getType == "SOFT":
+                if sh.getType() == "SOFT":
                     self.vel.setMag(3)
-                elif sh.getType == "HARD":
-                    self.pos = PVector(hitbox.posx, hitbox.posy)
-                    self.vel = 0
+                elif sh.getType() == "HARD":
+                    self.pos = PVector(self.hitbox.posx, self.hitbox.posy)
+                    self.vel = PVector(0, 0)
                     
     def boundaryCollision(self):
         if self.pos.x < 0:
@@ -90,6 +90,7 @@ class Enemy(Movable):
         super(Enemy, self).move(8)
         
         targetpos = player.pos.copy()
+        print(player.vel)
         targetpos.add(PVector.mult(player.vel, self.lookAheadFactor))
         
         self.acc = PVector.sub(targetpos, self.pos)
@@ -100,11 +101,11 @@ class Enemy(Movable):
         #decides what to do after a collision
         if self.hitbox.detect(sh.hitbox):
             if isinstance(sh, Obstacle):
-                if sh.getType == "SOFT":
+                if sh.getType() == "SOFT":
                     self.vel.setMag(5)
-                elif sh.getType == "HARD":
-                    self.pos = PVector(hitbox.posx, hitbox.posy)
-                    self.vel = 0
+                elif sh.getType() == "HARD":
+                    self.pos = PVector(self.hitbox.posx, self.hitbox.posy)
+                    self.vel = PVector(0, 0)
                     
     def boundaryCollision(self):
         if self.pos.x < 0:

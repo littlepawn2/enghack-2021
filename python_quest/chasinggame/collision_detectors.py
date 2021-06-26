@@ -24,7 +24,6 @@ class Circle:
         
         #detects rectangle circle collision
         elif isinstance(sh, Rectangle):    
-        
             def clamp(num, min_value, max_value):
                 return max(min(num, max_value), min_value)
             pointrect_x = clamp(self.posx, sh.posx, sh.posx + sh.lenx)
