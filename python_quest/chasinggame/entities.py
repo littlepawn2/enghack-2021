@@ -67,9 +67,8 @@ class Enemy(Movable):
         return self.hitbox
     
     def move(self):
-        #some kind of "ai" needs to go in here
         super(Enemy, self).move()
-        pass
+        pass #some kind of "ai" needs to go in here
         
     def collide(self, sh):
         #decides what to do after a collision
