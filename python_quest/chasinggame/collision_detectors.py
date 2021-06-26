@@ -7,11 +7,11 @@ class Circle:
     def __init__(self, posx, posy, rad):
         pass
         
-    def detect(sh):
+    def detect(self, sh):
         #returns true if colliding with shape, false if not
         pass
         
-    def update(x, y):
+    def update(self, x, y):
         #updates position
         pass
         
