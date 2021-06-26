@@ -4,17 +4,15 @@ from collision_detectors import Circle
 
 class Movable(object):
     
-    MAX_SPEED = 10
-    
     def __init__(self, posx, posy):
         self.pos = PVector(posx, posy)
         self.vel = PVector(0, 0)
         self.acc = PVector(0, 0)
         self.hitbox = None #movable will always have a hitbox
         
-    def move(self):
-        if self.vel.mag() > Movable.MAX_SPEED:
-            self.vel.setMag(Movable.MAX_SPEED)
+    def move(self, max_speed):
+        if self.vel.mag() > max_speed:
+            self.vel.setMag(max_speed)
         
         self.pos.add(self.vel)
         self.vel.add(self.acc)
@@ -35,7 +33,7 @@ class Player(Movable):
         
     def move(self):
         #accelerates player towards mouse
-        super(Player, self).move()
+        super(Player, self).move(10)
         relativeMousePos = PVector(mouseX-400, mouseY-300).div(Player.CONTROL_DAMPER)
         self.acc = relativeMousePos
         
@@ -43,10 +41,11 @@ class Player(Movable):
         #decides what to do after a collision
         if self.hitbox.detect(sh.hitbox):
             if isinstance(sh, Enemy):
-                pass
+                text("you lose", 100, 100)
+                noLoop()
             elif isinstance(sh, Obstacle):
                 if sh.getType == "SOFT":
-                    pass
+                    self.vel.setMag(3)
                 elif sh.getType == "HARD":
                     pass
                     
@@ -74,13 +73,20 @@ class Enemy(Movable):
         super(Enemy, self).__init__(posx, posy)
         self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
+        self.lookAheadFactor = random(0, 200)
         
     def getHitbox(self):
         return self.hitbox
     
-    def move(self):
-        super(Enemy, self).move()
-        pass #some kind of "ai" needs to go in here
+    def move(self, player):
+        super(Enemy, self).move(8)
+        
+        targetpos = player.pos.copy()
+        targetpos.add(PVector.mult(player.vel, self.lookAheadFactor))
+        
+        self.acc = PVector.sub(targetpos, self.pos)
+        
+    
         
     def collide(self, sh):
         #decides what to do after a collision

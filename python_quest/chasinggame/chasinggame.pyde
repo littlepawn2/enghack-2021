@@ -15,6 +15,8 @@ def setup():
     
     ##add enemies
     enemies.append(Enemy(100, 100, 25))
+    enemies.append(Enemy(500, 100, 25))
+    enemies.append(Enemy(100, 800, 25))
     
     ##add obstacles
     for i in range(10):
@@ -41,8 +43,10 @@ def draw():
     rect(0, 0, 2000, 2000)
     
     for enemy in enemies:
-        enemy.move()
+        enemy.move(player)
+        enemy.boundaryCollision()
         enemy.drawObject()
+        
     
     for obstacle in obstacles:
         obstacle.drawObject()
