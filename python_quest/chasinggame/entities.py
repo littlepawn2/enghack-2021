@@ -23,7 +23,6 @@ class Player(Movable):
     
     def __init__(self, posx, posy, rad):
         super().__init__(posx, posy)
-        self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
         
         
@@ -32,5 +31,6 @@ class Player(Movable):
 
 class Enemy(Movable):
     
-    def __init__(self, posx, posy):
-        pass
+    def __init__(self, posx, posy, rad):
+        super().__init__(posx, posy)
+        self.hitbox = Circle(posx, posy, rad)
