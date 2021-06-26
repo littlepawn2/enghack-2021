@@ -17,6 +17,7 @@ def setup():
     
     size(800, 600)
     stroke(255)
+    textSize(40)
     
     ##add enemies
     enemies.append(Enemy(en_pic,100, 100, 25, 0))
@@ -64,3 +65,6 @@ def draw():
     for obstacle in obstacles:
         player.collide(obstacle)
     player.drawObject()
+    
+def mousePressed():
+    player.blink()

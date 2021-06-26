@@ -32,6 +32,8 @@ class Player(Movable):
         self.pic = pic
         self.x = posx
         self.y = posy
+        self.cooldown = 100
+        self.score = 0
         
     def getHitbox(self):
         return self.hitbox
@@ -42,6 +44,11 @@ class Player(Movable):
         relativeMousePos = PVector(mouseX-400, mouseY-300).div(Player.CONTROL_DAMPER)
         self.acc = relativeMousePos
         
+        if self.cooldown != 0:
+            self.cooldown -= 1
+            
+        self.score += 1
+            
     def collide(self, sh):
         #decides what to do after a collision
         if self.hitbox.detect(sh.hitbox):
@@ -70,6 +77,17 @@ class Player(Movable):
         fill(255, 0, 0)
         circle(400, 300, self.rad)
         copy(self.pic, 0, 0, 500, 500, self.x - 15, self.y -15, self.rad +10, self.rad +10)
+        
+        fill(255)
+        text(str(self.cooldown), 20, 50)
+        
+        text(str(self.score), 700, 50)
+        
+    def blink(self):
+        if self.cooldown == 0:
+            relativeMousePos = PVector(mouseX-400, mouseY-300).setMag(50)
+            self.pos.add(relativeMousePos)
+            self.cooldown = 100
         
         
 
@@ -105,9 +123,11 @@ class Enemy(Movable):
             if isinstance(sh, Obstacle):
                 if sh.getType() == "SOFT":
                     self.vel.setMag(5)
+                '''
                 elif sh.getType() == "HARD":
                     self.pos = PVector(self.hitbox.posx, self.hitbox.posy)
                     self.vel = PVector(0, 0)
+                '''
                     
     def boundaryCollision(self):
         if self.pos.x < 0:

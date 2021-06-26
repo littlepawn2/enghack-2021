@@ -31,17 +31,6 @@ class Circle:
             
             if ((pointrect_x - self.posx)**2 + (pointrect_y - self.posy)**2)**0.5 < self.rad/2:
                 return True
-            
-            
-                #push back 5 px
-                if pointrect_x < self.posx:
-                    self.posx -= 5
-                if pointrect_x > self.posx:
-                    self.posx += 5
-                if pointrect_y < self.posy:
-                    self.posy -=5
-                if pointrect_y > self.posy:
-                    self.posy += 5
                 
             elif ((pointrect_x - self.posx)**2 + (pointrect_y - self.posy)**2)**0.5 < self.rad/2:
                 return False
