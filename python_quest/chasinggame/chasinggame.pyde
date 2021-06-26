@@ -39,7 +39,10 @@ def draw():
     
     #boundary
     noFill()
+    strokeWeight(1)
     rect(0, 0, 2000, 2000)
+    strokeWeight(0)
+    
     
     for enemy in enemies:
         enemy.move(player)
