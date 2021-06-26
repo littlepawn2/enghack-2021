@@ -1,20 +1,18 @@
 
 ##different shaped hitboxes
 
-##everything should have a detect and update function
-##detect should take another shape and return true if hit, false if not hit
-##update should take x & y position and update it's own position
-
 class Circle:
     ##a circular hitbox
     
     def __init__(self):
         pass
         
-    def detect():
+    def detect(sh):
+        #returns true if colliding with shape, false if not
         pass
         
     def update(x, y):
+        #updates position
         pass
         
         
@@ -24,12 +22,8 @@ class Circle:
 
 class Rectangle:
     ##a rectanglar hitbox
+    ##should always be stationary, update not required
     
     def __init__(self):
         pass
         
-    def detect():
-        pass
-        
-    def update(x, y):
-        pass
