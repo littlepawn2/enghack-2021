@@ -6,11 +6,16 @@ class Movable(object):
     
     MAX_SPEED = 10
     
-    def __init__(self, posx, posy):
+    def __init__(self, posx, posy, pic):
         self.pos = PVector(posx, posy)
         self.vel = PVector(0, 0)
         self.acc = PVector(0, 0)
         self.hitbox = None #movable will always have a hitbox
+        self.pic = pic
+        self.x = posx
+        self.y = posy
+        
+        
         
     def move(self):
         if self.vel.mag() > Movable.MAX_SPEED:
@@ -65,7 +70,7 @@ class Player(Movable):
     def drawObject(self):
         fill(255, 0, 0)
         circle(400, 300, self.rad)
-        copy(self.pic, 0, 0, 500, 500, int(self.pos.x), int(self.pos.y), self.rad, self.rad)
+        copy(self.pic, 0, 0, 500, 500, self.x - 15, self.y -15, self.rad +10, self.rad +10)
         
         
 
