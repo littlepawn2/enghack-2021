@@ -1,4 +1,5 @@
 from collision_detectors import Circle
+from obstacles import Obstacle
 
 ##file for anything that moves
 

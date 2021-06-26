@@ -47,6 +47,8 @@ def draw():
     for enemy in enemies:
         enemy.move(player)
         enemy.boundaryCollision()
+        for obstacle in obstacles:
+            enemy.collide(obstacle)
         enemy.drawObject()
     
     popMatrix()
@@ -54,4 +56,8 @@ def draw():
     
     player.move()
     player.boundaryCollision()
+    for enemy in enemies:
+        player.collide(enemy)
+    for obstacle in obstacles:
+        player.collide(obstacle)
     player.drawObject()
