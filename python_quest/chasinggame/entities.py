@@ -29,6 +29,7 @@ class Player(Movable):
         super(Player, self).__init__(posx, posy)
         self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
+        self.pic =  loadImage ("kirbypuffy.png")
         
     def getHitbox(self):
         return self.hitbox
@@ -64,6 +65,8 @@ class Player(Movable):
     def drawObject(self):
         fill(255, 0, 0)
         circle(400, 300, self.rad)
+        copy(self.pic, 0, 0, 500, 500, int(self.pos.x), int(self.pos.y), self.rad, self.rad)
+        
         
 
 
