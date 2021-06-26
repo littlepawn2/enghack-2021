@@ -23,6 +23,8 @@ class Movable(object):
 
 class Player(Movable):
     
+    CONTROL_DAMPER = 100
+    
     def __init__(self, posx, posy, rad):
         super(Player, self).__init__(posx, posy)
         self.rad = rad
@@ -34,7 +36,7 @@ class Player(Movable):
     def move(self):
         #accelerates player towards mouse
         super(Player, self).move()
-        relativeMousePos = PVector(mouseX-self.pos.x, mouseY-self.pos.y).div(100)
+        relativeMousePos = PVector(mouseX-self.pos.x, mouseY-self.pos.y).div(Player.CONTROL_DAMPER)
         self.acc = relativeMousePos
         
     def collide(self, sh):
