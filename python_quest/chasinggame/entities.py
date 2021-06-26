@@ -36,7 +36,7 @@ class Player(Movable):
     def move(self):
         #accelerates player towards mouse
         super(Player, self).move()
-        relativeMousePos = PVector(mouseX-self.pos.x, mouseY-self.pos.y).div(Player.CONTROL_DAMPER)
+        relativeMousePos = PVector(mouseX-400, mouseY-300).div(Player.CONTROL_DAMPER)
         self.acc = relativeMousePos
         
     def collide(self, sh):
@@ -52,7 +52,7 @@ class Player(Movable):
                 
     def drawObject(self):
         fill(255, 0, 0)
-        circle(self.pos.x, self.pos.y, self.rad)
+        circle(400, 300, self.rad)
         
 
 
@@ -60,7 +60,8 @@ class Player(Movable):
 class Enemy(Movable):
     
     def __init__(self, posx, posy, rad):
-        super().__init__(posx, posy)
+        super(Enemy, self).__init__(posx, posy)
+        self.rad = rad
         self.hitbox = Circle(posx, posy, rad)
         
     def getHitbox(self):
