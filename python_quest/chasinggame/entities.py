@@ -51,7 +51,8 @@ class Player(Movable):
                 if sh.getType == "SOFT":
                     self.vel.setMag(3)
                 elif sh.getType == "HARD":
-                    pass
+                    self.pos = PVector(hitbox.posx, hitbox.posy)
+                    self.vel = 0
                     
     def boundaryCollision(self):
         if self.pos.x < 0:
@@ -99,9 +100,10 @@ class Enemy(Movable):
         if self.hitbox.detect(sh.hitbox):
             if isinstance(sh, Obstacle):
                 if sh.getType == "SOFT":
-                    pass
+                    self.vel.setMag(5)
                 elif sh.getType == "HARD":
-                    pass
+                    self.pos = PVector(hitbox.posx, hitbox.posy)
+                    self.vel = 0
                     
     def boundaryCollision(self):
         if self.pos.x < 0:
