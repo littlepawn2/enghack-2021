@@ -33,8 +33,6 @@ def draw():
     player.boundaryCollision()
     player.drawObject()
     
-    print(player.pos)
-    
     pushMatrix()
     translate(-player.pos.x+400, -player.pos.y+300)
     
