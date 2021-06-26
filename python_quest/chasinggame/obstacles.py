@@ -17,6 +17,9 @@ class Obstacle(object):
     def getHitbox(self):
         return self.hitbox
     
+    def getType(self):
+        return self.type
+    
     def drawObject(self):
         fill(255)
         rect(posx, posy, lenx, leny)

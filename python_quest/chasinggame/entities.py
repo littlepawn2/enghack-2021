@@ -44,10 +44,11 @@ class Player(Movable):
         if self.hitbox.detect(sh.hitbox):
             if isinstance(sh, Enemy):
                 pass
-            elif isinstance(sh, SoftObstacle):
-                pass
-            elif isinstance(sh, HardObstacle):
-                pass
+            elif isinstance(sh, Obstacle):
+                if sh.getType == "SOFT":
+                    pass
+                elif sh.getType == "HARD":
+                    pass
                 
     def drawObject(self):
         fill(255, 0, 0)
@@ -73,10 +74,11 @@ class Enemy(Movable):
     def collide(self, sh):
         #decides what to do after a collision
         if self.hitbox.detect(sh.hitbox):
-            if isinstance(sh, SoftObstacle):
-                pass
-            elif isinstance(sh, HardObstacle):
-                pass
+            if isinstance(sh, Obstacle):
+                if sh.getType == "SOFT":
+                    pass
+                elif sh.getType == "HARD":
+                    pass
                 
     def drawObject(self):
         fill(0, 0, 255)
